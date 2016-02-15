@@ -1,0 +1,6 @@
+
+
+<% @competitors.each do |c|%>
+<%=c.fname%> <%=c.lname%>, <%=c.team%> <%=link_to "add to event", competitors_path()%>
+<br>
+<%end%> 

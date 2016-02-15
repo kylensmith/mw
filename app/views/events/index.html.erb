@@ -1,0 +1,6 @@
+events index
+
+
+<% @events.each do |events| %>
+<%= link_to events.event_name, event_path(events.id)%>
+<%end%>

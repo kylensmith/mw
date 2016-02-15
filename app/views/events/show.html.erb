@@ -1,0 +1,15 @@
+events show
+<br>
+<br>
+<h1>
+
+	<%=@event.event_name%>
+	
+</h1>
+<br>
+<br>
+
+<% @brackets.each do |brackets| %>
+<br>
+<%= link_to brackets.name, bracket_path(brackets.id)%>
+<%end%>

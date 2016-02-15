@@ -1,0 +1,180 @@
+// Place all the styles related to the brackets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+#container { 
+    width: 800px; 
+    height: 600px; 
+    float: left; 
+}
+
+section { 
+    width: 130px; 
+    height: 520px; 
+    float: left;
+}
+
+section > div { 
+    width: 100px; 
+    height: 20px; 
+    border: 1px solid #000; 
+    margin: 10px 0; 
+    background: #73789F; 
+    color: white; 
+    padding: 10px 10px 10px 20px;
+}
+
+section > div:nth-child(2n) { 
+    margin-bottom: 40px;
+}
+
+.connecter { 
+    width: 30px; 
+    height: 520px; 
+    float: left; 
+}
+
+.line { 
+    width: 30px; 
+    height: 520px; 
+    float: left; 
+}
+
+.connecter div { 
+    border: 1px solid #000; 
+    border-left: none; 
+    height: 50px; 
+    width: 100%; 
+    margin: 80px 0 0 1px;
+}
+
+.connecter div:first-child { 
+    margin: 32px 0 0 1px; 
+}
+
+.line div { 
+    border-top: 1px solid #000; 
+    margin: 133px 0 0 1px; 
+}
+
+.line div:first-child { 
+    margin-top: 55px; 
+}
+
+#quarterFinals > div { 
+    margin-top: 91px; 
+}
+
+#quarterFinals > div:first-child { 
+    margin-top: 37px; 
+}
+
+#conn2 div { 
+    margin-top: 133px; 
+    height: 133px;
+}
+
+#conn2 div:first-child { 
+    margin-top: 57px; 
+}
+
+#line2 div { 
+    margin-top: 270px; 
+}
+
+#line2 div:first-child { 
+    margin-top: 125px; 
+}
+#semiFinals > div { 
+    margin-top: 230px; 
+}
+#semiFinals > div:first-child { 
+    margin-top: 105px; 
+}
+#conn3 div { 
+    margin-top: 125px; 
+    height: 270px;
+}
+
+#line3 div { 
+    margin-top: 270px; 
+}
+
+#final > div { 
+    margin-top: 250px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *  Flex Layout Specifics
+*/
+main{
+  display:flex;
+  flex-direction:row;
+}
+.round{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  width:100vw;
+  list-style:none;
+  padding:0;
+}
+  .round .spacer{ flex-grow:1; }
+  .round .spacer:first-child,
+  .round .spacer:last-child{ flex-grow:.5; }
+
+  .round .game-spacer{
+    flex-grow:1;
+  }
+
+
+
+/*first CSS*/
+/*
+ *  General Styles
+*/
+body{
+  font-family:sans-serif;
+  font-size:small;
+  padding:10vw;
+  line-height:1.4vw;
+}
+
+li.game{
+  padding-left:2vw;
+}
+
+  li.game.winner{
+    font-weight:bold;
+  }
+  li.game span{
+    float:right;
+    margin-right:3vw;
+  }
+
+  li.game-top{ border-bottom:.5vw solid #aaa; }
+
+  li.game-spacer{ 
+    border-right:.5vw solid #aaa;
+    min-height:4vw;
+  }
+
+  li.game-bottom{ 
+    border-top:.5vw solid #aaa;
+  }

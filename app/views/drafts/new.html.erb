@@ -1,0 +1,15 @@
+This is the drafts new
+
+<%= form_for @draft do |f| %>  
+	<%=f.hidden_field :user_id, :value => @current_user.id%>
+	<%=f.hidden_field :event_id, :value => @id%> 
+	<div class="button"><%=f.submit :snap %></div>
+	<% end %> 
+
+
+<!-- This code should loop the bracket's within the event, then loop (within the loop) the competitors available from the jointable -->
+	
+    <!-- 	t.integer :event_id
+    	t.integer :competitor_id
+    	t.integer :bracket_id
+    	t.integer :group_id -->
