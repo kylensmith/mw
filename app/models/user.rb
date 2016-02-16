@@ -5,11 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_one :admin
 	has_one :profile
+	# has_many :drafts, through: :groups
 	has_many :groups, through: :directors
 	has_many :groups, through: :invitations
 	has_many :directors
 	has_many :invitations
 	has_many :projections
-	has_many :drafts
+	# has_many :competitors, through: :drafts
+ #    has_many :drafts
+	
 
 end

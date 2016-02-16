@@ -7,10 +7,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'users#index'
-  resources :profiles, :users, :matches, :groups, :events, :drafts, :directors, :competitors, :brackets, :admins
+  resources :profiles, :users, :groups, :events, :drafts, :directors, :competitors, :brackets, :admins
 
 	resources :events do
 	  resources :brackets
+	end
+
+	resources :events do
+	  resources :matches
 	end
 
 	resources :brackets do
@@ -20,6 +24,16 @@ Rails.application.routes.draw do
 	resources :brackets do
 	  resources :competitors
 	end
+
+	resources :groups do
+		resources :events do
+	  		resources :drafts
+		end
+	end
+
+
+
+
 
 
 

@@ -1,0 +1,10 @@
+This will add an athlete to an event.
+
+
+<%= form_for @competitor do |f| %>  
+	First Name <%=f.text_field :fname%><br>
+	Last Name <%=f.text_field :lname%><br>
+	Team Name <%=f.text_field :team%><br>
+	
+	<div class="button"><%=f.submit :add %></div>
+	<% end %>

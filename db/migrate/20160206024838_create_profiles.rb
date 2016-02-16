@@ -8,6 +8,8 @@ class CreateProfiles < ActiveRecord::Migration
     	t.text :bio
     	t.string :city
     	t.string :state
+      t.string :mobile
+      t.date :birthday
 
       t.timestamps null: false
     end

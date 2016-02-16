@@ -1,0 +1,37 @@
+This is for creating a new profile on initial login.
+
+You must create a profile.
+
+<%= form_for @profile do |f| %>   
+	<%=f.label :First_Name %>   
+	<%=f.text_field :fname%> 
+	<br>
+	<%=f.label :Last_Name%>   
+	<%=f.text_field :lname%> 
+	<br>
+	<%=f.label :Username%>   
+	<%=f.text_field :username%>  
+	<br>
+	<%=f.label :Bio%>
+	<br>   
+	<%=f.text_area :bio, cols: 30, rows: 3%>  
+	<br>
+	<%=f.label :Birthday%>   
+	<%=f.date_field :birthday %> 
+	<br>
+	<%=f.label :City%>   
+	<%=f.text_field :city%>  
+	<br>
+	<%=f.label :state %>   
+	<%=f.select :state, options_for_select(us_states) %>   
+	<br>
+	<br>
+	<%=f.label :mobile_phone_number%>   
+	<%=f.text_field :mobile%> 
+	<br> 
+	*Will be used for send text message scoring updates.
+	<br> 
+	<%=f.hidden_field :mobile%> 
+	<%=f.submit :create %>
+
+<% end %>

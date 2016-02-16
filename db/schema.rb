@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211135548) do
+ActiveRecord::Schema.define(version: 20160216181143) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,7 +29,15 @@ ActiveRecord::Schema.define(version: 20160211135548) do
 
   create_table "competitor_brackets", force: :cascade do |t|
     t.integer  "competitor_id"
-    t.integer  "event_id"
+    t.integer  "bracket_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "competitor_drafts", force: :cascade do |t|
+    t.integer  "draft_id"
+    t.integer  "bracket_id"
+    t.integer  "competitor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -52,11 +60,9 @@ ActiveRecord::Schema.define(version: 20160211135548) do
   create_table "drafts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.integer  "competitor_id"
-    t.integer  "bracket_id"
     t.integer  "group_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -117,6 +123,8 @@ ActiveRecord::Schema.define(version: 20160211135548) do
     t.text     "bio"
     t.string   "city"
     t.string   "state"
+    t.string   "mobile"
+    t.date     "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -157,9 +165,7 @@ ActiveRecord::Schema.define(version: 20160211135548) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "profile_id"
-    t.date     "birthday"
     t.string   "password"
-    t.string   "mobile"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false

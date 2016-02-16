@@ -2,6 +2,7 @@ class Match < ActiveRecord::Base
 	belongs_to :first_competitor, class_name: 'Competitor'
 	belongs_to :second_competitor, class_name: 'Competitor'
 	belongs_to :bracket, :class_name => "competitor"
+	has_one :bracket
 	def all_competitors
 		comps = []
 		[first_competitor, second_competitor].each do |competitor|

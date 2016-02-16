@@ -1,0 +1,12 @@
+
+Groups you belong to:
+<br>
+<%@yours.each do |group| %>
+	
+	<!-- This is a preliminary validation.  Once the option to invite users and have different invitation states is developed, this will need to be altered in order to be scalable. -->
+<% if group.invitations.map(&:user_id, ).include? current_user.id %>
+		<%= group.gname%>
+		
+	<%end%>
+	<br>
+<%end%>

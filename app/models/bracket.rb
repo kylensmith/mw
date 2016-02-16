@@ -1,7 +1,9 @@
 class Bracket < ActiveRecord::Base
 	belongs_to :event
-	has_many :matches
-	has_many :competitors, through: :matches
+	# has_many :matches
+	# has_many :competitors, through: :matches
+
+
 	# Should this connect directly to populate the competitors?
 	has_many :matches
 	has_many :projections

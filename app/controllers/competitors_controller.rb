@@ -15,6 +15,9 @@ class CompetitorsController < ApplicationController
 		redirect_to request.referer	
 	end
 
+	def add
+	end
+
 
 
 	private
