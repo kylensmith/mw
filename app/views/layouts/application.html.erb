@@ -10,7 +10,9 @@
 	<p><%= "CONTROLLER:#{controller.controller_name} ACTION:#{controller.action_name}"  %></p>
 	<p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
-
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+<br>
+<%= link_to('Edit Password', edit_user_registration_path, :method => :get) %>
 <%= yield %>
 
 </body>

@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
 		if @profile.save
 			@profile.update(user_id: current_user.id)
 		end
+		 redirect_to root_path
 	
 	end
 

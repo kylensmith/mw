@@ -3,8 +3,11 @@ class UsersController < ApplicationController
 	def index
 		if current_user.profile.blank?
 			redirect_to new_profile_path
+		else
+			@user = current_user
 
 		end
+
 	end
 
 	def show

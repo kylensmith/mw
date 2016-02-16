@@ -4,9 +4,18 @@ Groups you belong to:
 <%@yours.each do |group| %>
 	
 	<!-- This is a preliminary validation.  Once the option to invite users and have different invitation states is developed, this will need to be altered in order to be scalable. -->
-<% if group.invitations.map(&:user_id, ).include? current_user.id %>
-		<%= group.gname%>
+<% if group.invitations.map(&:user_id).include? current_user.id %>
+		<%= link_to group.gname, group_path(group.id)%>
 		
 	<%end%>
 	<br>
+<%end%>
+
+<% if @yours.invitations.map(&:user_id).include? current_user.id %>
+<%else%>
+	This application is in bata testing.  It appears that you have not been invited into a test group.  Inclusion is by invitation only.  If you would like to be included in a test, please ensure that your profile is filled out.
+	<br><br>
+
+	Thank you.
+
 <%end%>
