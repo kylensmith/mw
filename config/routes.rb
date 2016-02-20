@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'users#index'
-  resources :profiles, :users, :groups, :events, :drafts, :directors, :competitors, :brackets, :admins
+  # resources :profiles, :users, :groups, :events, :drafts, :directors, :competitors, :brackets, :admins
 
+  post 'update_draft_selection' => 'drafts#update_draft_selection', as: :update_draft_selection
+	
 	resources :events do
 	  resources :brackets
 	end

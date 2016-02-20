@@ -1,4 +1,4 @@
-
+<br><br>
 Groups you belong to:
 <br>
 <%@yours.each do |group| %>
@@ -11,11 +11,3 @@ Groups you belong to:
 	<br>
 <%end%>
 
-<% if @yours.invitations.map(&:user_id).include? current_user.id %>
-<%else%>
-	This application is in bata testing.  It appears that you have not been invited into a test group.  Inclusion is by invitation only.  If you would like to be included in a test, please ensure that your profile is filled out.
-	<br><br>
-
-	Thank you.
-
-<%end%>

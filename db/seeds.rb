@@ -12,8 +12,8 @@ k = User.create(profile_id: 1, email: "kns@test.com", password: "Thisisatest")
 z = User.create(profile_id: 2, email: "z@test.com", password: "Thisisatest")
 
 
-n = Profile.create(fname: "Kyle N.", lname: "Smith", city: "Wilmington", state: "Delaware", user_id: 1)
-s = Profile.create(fname: "Zi-Xiang", lname: "Shen", city: "Wilmington", state: "Delaware", user_id: 2)
+n = Profile.create(fname: "Kyle N.", lname: "Smith", username: "KYLENSMITH", city: "Wilmington", state: "Delaware", user_id: 1)
+s = Profile.create(fname: "Zi-Xiang", lname: "Shen", username: "EsquireShen", city: "Wilmington", state: "Delaware", user_id: 2)
 
 # k << n
 # z << s 
@@ -88,7 +88,7 @@ Match.create(first_competitor_id: 14, second_competitor_id: 23, bracket_id: 2, )
 Match.create(first_competitor_id: 24, second_competitor_id: 31, bracket_id: 3, )
 Match.create(first_competitor_id: 4, second_competitor_id: 12, bracket_id: 1, )
 
-Draft.create(event_id: 1, group_id: 1, user_id: 2)
+Draft.create(event_id: 1, group_id: 1, user_id: 1)
 Draft.create(event_id: 1, group_id: 1, user_id: 2)
 
 CompetitorDraft.create(competitor_id: 4, draft_id: 1, bracket_id: 1)

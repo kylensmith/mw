@@ -8,8 +8,33 @@ events show
 </h1>
 <br>
 <br>
-
+List of brackets in this event:
 <% @brackets.each do |brackets| %>
 <br>
 <%= link_to brackets.name, bracket_path(brackets.id)%>
 <%end%>
+
+<br>
+
+<br>
+
+Users Entered in the event from this group
+
+<br>
+<br>
+<% @draft.each do |draft| %>
+<% if draft.present?%>
+<%= link_to draft.user.profile.username, group_event_draft_path(@group, @event.id, draft.id)%>
+<br>
+
+<%end%>
+<%end%>
+
+<br>
+
+<br>
+
+Create a draft for this event.
+<br>
+<%= link_to "Enter a team into this event", new_group_event_draft_path(@group, @event.id)%>
+

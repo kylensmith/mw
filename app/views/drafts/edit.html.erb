@@ -1,1 +1,48 @@
-This is the drafts edit
+<br><br>
+
+<h1><%=@draft.user.profile.username%>'s draft for <%=@draft.event.event_name%></h1> 
+
+<br>
+<%@team.each do |team|%>
+
+<%if team.fname.empty?%>
+You need to select a competitor for this bracket
+<%else%>
+<%=team.id%>BRACKET NAME: <%=team.fname%> <%=team.lname%> LINK
+
+<%end%>
+<br>
+<%end%>
+				<%= @draft.competitors.inspect %>
+
+
+<br><br><br><br><br><br><br>
+
+<%@brackets.each do |b|%>
+	<%=b.name%>
+<% current_competitor = nil %>
+	<%= form_tag update_draft_selection_path do %>
+		
+		<select name="competitor_id" id="competitor_id">
+			<%b.competitors.each do |c|%>	
+					
+				<option value= <%=c.id%>
+					<%if @draft.competitors.include?(c)%>,  selected="selected"
+					<% current_competitor = c.id %>
+					<%end%>>
+						 
+					<%="#{c.fname} #{c.lname}, #{c.team} ID:[#{c.id}]"%>
+					</option>
+					<%end%>
+				</select>
+				<%= hidden_field_tag :current_competitor_id, current_competitor %>
+				<%= hidden_field_tag :draft_id, @draft.id %>
+
+					<%= submit_tag "Change" %>
+					<% end %>
+
+			
+				
+<br>
+<%end%>
+

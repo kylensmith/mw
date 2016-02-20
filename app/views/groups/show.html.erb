@@ -1,3 +1,19 @@
 This is a test
 
 Group Show Page
+
+
+
+<br><br><br>
+
+Group Name:
+<%=@group.gname%>
+
+<br><br><br>
+
+<%@events.each do |events|%>
+
+<%= link_to events.event_name, group_event_path(@group.id, events.id)%>
+<%end%>
+
+

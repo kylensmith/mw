@@ -4,4 +4,14 @@ This is the /USER/INDEX
 <h4><%=@user.profile.city%>, <%=@user.profile.state%></h4>
 
 
+<!-- Checks to see if a user is already invited to groups.  If not, it provides the default message. -->
+<% if @user.invitations.map(&:user_id).include? current_user.id %>
 
+<%=link_to "Groups", groups_path %>
+<%else%>
+	This application is in beta testing.  <br><br>It appears that you have not been invited to join a group to test this application. <strong>Inclusion in a group is by invitation only.</strong>  If you would like to be included in a test, you will need to have a current user invite you to join a test.
+	<br><br>
+
+	Thank you.
+
+<%end%>

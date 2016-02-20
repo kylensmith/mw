@@ -4,5 +4,10 @@ class GroupsController < ApplicationController
 		@id = current_user.id
 	end	
 
+	def show
+		@group = Group.find(params[:id])
+		@events = @group.events
+	end
+
 
 end

@@ -9,5 +9,7 @@ class Bracket < ActiveRecord::Base
 	has_many :projections
 	has_many :competitors, through: :competitor_brackets
 	has_many :competitor_brackets
+	has_many :drafts, through: :competitor_drafts
+    has_many :competitor_drafts
 end
 
