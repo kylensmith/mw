@@ -88,6 +88,9 @@ Match.create(first_competitor_id: 14, second_competitor_id: 23, bracket_id: 2, )
 Match.create(first_competitor_id: 24, second_competitor_id: 31, bracket_id: 3, )
 Match.create(first_competitor_id: 4, second_competitor_id: 12, bracket_id: 1, )
 
+Match.create(first_competitor_id: 4, first_competitor_team: "Bakersfield Test College", second_competitor_id: 12, second_competitor_team: "Utah Valley Test University", bracket_id: 1, bracket_round: 110, round_match: 4, result: 1, winning_competitor_id: 4, advancement_points: 1, placement_points: 0, tournament_match_number: 201, match_points: 0)
+
+
 Draft.create(event_id: 1, group_id: 1, user_id: 1)
 Draft.create(event_id: 1, group_id: 1, user_id: 2)
 

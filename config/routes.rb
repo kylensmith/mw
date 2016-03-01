@@ -8,9 +8,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#index'
   # resources :profiles, :users, :groups, :events, :drafts, :directors, :competitors, :brackets, :admins
+  get '/events/:event_id/brackets/:bracket_id/add' => 'brackets#add'
+
+  get '/events/:event_id/brackets/:bracket_id/add_to_bracket/:competitor_id' => 'brackets#add_to_bracket'
+	
+	
 
   post 'update_draft_selection' => 'drafts#update_draft_selection', as: :update_draft_selection
 	
+	resources :competitors
+
 	resources :events do
 	  resources :brackets
 	end
@@ -19,9 +26,9 @@ Rails.application.routes.draw do
 	  resources :matches
 	end
 
-	resources :brackets do
-	  resources :matches
-	end
+	# resources :brackets do
+	#   resources :matches
+	# end
 
 	resources :brackets do
 	  resources :competitors

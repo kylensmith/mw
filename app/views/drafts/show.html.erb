@@ -20,11 +20,33 @@ You need to select a competitor for this bracket
 <%=b.name%>
 	<%b.competitors.each do |c|%>
 		<%if @draft.competitors.include?(c)%>
-		<%=c.fname%>
+		<strong><%="#{c.fname} #{c.lname}, #{c.team}"%></strong> <br>
+			<%c.all_matches.each do |match|%>
+			<%="#{match.tournament_match_number}"%> 
+
+			<!-- I may just list only one competitor and not both names.  Use an if statement to verify if not drafted athlete -->
+
+
+			<%="#{match.first_competitor.fname} #{match.first_competitor.lname}, (#{match.first_competitor.team})"%> 
+
+			<%="#{match.second_competitor.fname} #{match.second_competitor.lname} (#{match.second_competitor.team})"%>
+
+			<%="#{round_text(match.bracket_round)} #{match_text(match.result)} #{match.score}"%> 
+
+			<%="Points Earned #{points_from_match(match_points(match.result), match.advancement_points, match.placement_points)}........#{match.advancement_points}"%>
+			<br>
+
+			<%end%>
+			<br>
+
+
 		<%end%>
+		<br>
+
 	<%end%>
 	<br>
 <%end%>
+
 
 
 

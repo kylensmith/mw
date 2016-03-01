@@ -1,0 +1,45 @@
+This will add an athlete to an event.
+
+Add to the event/ bracket/ page
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+current competitors in bracket
+<br>
+<% @cb.each do |comps| %>
+<%= "#{comps.fname} #{comps.lname}, #{comps.team}"%> 
+
+<br>
+<%end%>
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<%= form_for @competitor do |f| %>  
+	First Name <%=f.text_field :fname%><br>
+	Last Name <%=f.text_field :lname%><br>
+	Team Name <%=f.text_field :team%><br>
+	
+	<div class="button"><%=f.submit :add %></div>
+	<% end %>
+
+<br>
+<br>
+<% @comp.each do |comps| %>
+<%= "#{comps.fname} #{comps.lname}, #{comps.team}"%> 
+<%=link_to "Add to Bracket", "add_to_bracket/#{comps.id}"%>
+
+<br>
+<%end%>
+
+
+
+

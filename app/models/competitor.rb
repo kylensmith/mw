@@ -18,6 +18,13 @@ class Competitor < ActiveRecord::Base
   	def all_matches
   		matches_a + matches_b
   	end
+
+    def full_name_team
+   "#{fname} #{lname} (#{team})"
+  end
+
+
+
 end
 
 # Warning: Ignoring invalid association :groups on Competitor 

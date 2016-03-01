@@ -1,0 +1,45 @@
+<!-- This is a form to create a new match result. -->
+
+<!-- Loop through each bracket and only list the competitors for that specific bracket. -->
+<br>
+
+<% @brackets.each do |brackets|%>
+<%= brackets.name%>
+
+
+
+
+
+			<%= form_for([@ev, @matches]) do |f| %>   
+			<%=f.label :first_competitor_id %>   
+			<%=f.select :first_competitor_id, options_from_collection_for_select(brackets.competitors, 'id', 'full_name_team'),:include_blank => "Select First Competitor" %>
+
+			<%=f.select :second_competitor_id, options_from_collection_for_select(brackets.competitors, 'id', 'full_name_team'),:include_blank => "Select Second Competitor" %>
+			
+			<%= f.hidden_field :bracket_id, :value => brackets.id %>
+
+
+			  
+			<%=f.select :result, options_for_select(match_result),:include_blank => "Result" %> 
+			<%=f.label "Score" %>   
+			<%=f.text_field :score%>
+
+			<%= select_tag(:winner, options_for_select([['Select Winner', 0], ['First Competitor', 1], ['Second Competitor', 2]])) %>
+
+			<br>
+			<%=f.label "Bracket Round" %>   
+			<%=f.text_field :bracket_round%>  
+			<%=f.label "Round Match" %>   
+			<%=f.text_field :round_match%>
+			<%=f.label "Match Number" %>   
+			<%=f.text_field :tournament_match_number%>
+			 
+			   
+			<%=f.select :advancement_points, options_for_select(advancement),:include_blank => "Advancement Points" %> 
+			<%=f.select :placement_points, options_for_select(placement),:include_blank => "Placement Points" %> 
+			<br>
+			<%=f.submit :create %>
+			<% end %>
+			<br><br>
+
+		<% end %>

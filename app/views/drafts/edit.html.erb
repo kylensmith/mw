@@ -13,7 +13,7 @@ You need to select a competitor for this bracket
 <%end%>
 <br>
 <%end%>
-				<%= @draft.competitors.inspect %>
+			
 
 
 <br><br><br><br><br><br><br>
@@ -21,6 +21,7 @@ You need to select a competitor for this bracket
 <%@brackets.each do |b|%>
 	<%=b.name%>
 <% current_competitor = nil %>
+<!-- This form needs to be reworked and rewritten in ruby.  Also needs to default to blank if there is a value of nil for the competitor -->
 	<%= form_tag update_draft_selection_path do %>
 		
 		<select name="competitor_id" id="competitor_id">
@@ -36,6 +37,7 @@ You need to select a competitor for this bracket
 					<%end%>
 				</select>
 				<%= hidden_field_tag :current_competitor_id, current_competitor %>
+				<%= hidden_field_tag :current_competitor_id, b.id %>
 				<%= hidden_field_tag :draft_id, @draft.id %>
 
 					<%= submit_tag "Change" %>

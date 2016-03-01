@@ -9,11 +9,11 @@ class CreateMatches < ActiveRecord::Migration
     	t.integer :bracket_round
     	t.integer :round_match
     	t.integer :result
-    	t.integer :winning_competitor
-    	t.integer :advancement_points
+    	t.integer :winning_competitor_id
+    	t.float :advancement_points
     	t.integer :placement_points
         t.integer :tournament_match_number
-    	t.integer :match_points
+    	t.string :score
 
       t.timestamps null: false
     end

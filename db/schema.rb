@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216181143) do
+ActiveRecord::Schema.define(version: 20160218205230) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bracket_draft_competitors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bracket_drafts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,6 +75,13 @@ ActiveRecord::Schema.define(version: 20160216181143) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "event_matches", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "event_name"
     t.string   "year"
@@ -106,11 +123,11 @@ ActiveRecord::Schema.define(version: 20160216181143) do
     t.integer  "bracket_round"
     t.integer  "round_match"
     t.integer  "result"
-    t.integer  "winning_competitor"
-    t.integer  "advancement_points"
+    t.integer  "winning_competitor_id"
+    t.float    "advancement_points"
     t.integer  "placement_points"
     t.integer  "tournament_match_number"
-    t.integer  "match_points"
+    t.string   "score"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

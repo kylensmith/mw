@@ -1,11 +1,9 @@
 class DraftsController < ApplicationController
 	def new
-	# If there is not a draft (rich join table) then create one using a loop for all the brackets joined to the event and populate with the information that is available to associate the draft table without the competitor selection.
-		puts "******************"
-		puts current_user.id
-		puts params[:event_id]
-		puts params[:group_id]
-		puts "****** ALL PARAMS PASS ************"
+	# If there is not a draft (rich join table) then create one using a loop
+	# for all the brackets joined to the event and populate with the
+	# information that is available to associate the draft table without the
+	# competitor selection.
 
 		if !Draft.exists?(:user_id => current_user.id, :event_id => params[:event_id],  :group_id => params[:group_id])
 		puts current_user.id
@@ -49,15 +47,16 @@ class DraftsController < ApplicationController
 
 	def update_draft_selection
 		competitor = Competitor.find(params[:competitor_id])
-		old_competitor = Competitor.find(params[:current_competitor_id])
+		# old_competitor = Competitor.find(params[:current_competitor_id])
 		draft = Draft.find(params[:draft_id])
-			draft.competitors.push competitor
-			draft.competitors.destroy old_competitor
+		@event_id = params[:event_id]
+		join = CompetitorDraft.find_by(bracket_id: params[:bracket_id], draft_id: draft.id)
+		join.update(competitor_id: competitor.id, draft_id: draft.id)
 
-		puts "HELOOOOOO SETH"
-		puts params
-		redirect_to root_path
-		
+			# draft.competitors.push competitor
+			# draft.competitors.destroy old_competitor
+
+		redirect_to :back
 	end
 
 
