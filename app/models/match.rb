@@ -14,6 +14,26 @@ class Match < ActiveRecord::Base
 		comps
 	end
 
+	def winning_competitor
+		if winning_competitor_id == first_competitor_id
+			first_competitor
+		elsif winning_competitor_id == second_competitor_id
+			second_competitor
+		elsif winning_competitor_id != second_competitor_id
+		end
+			
+	end
+
+	def losing_competitor
+		if winning_competitor_id == first_competitor_id
+			second_competitor
+		elsif winning_competitor_id == second_competitor_id
+			first_competitor
+		elsif winning_competitor_id != second_competitor_id
+		end
+			
+	end
+
 
 	# State machine used to render integer to text for match results.
 

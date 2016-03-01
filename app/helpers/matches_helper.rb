@@ -27,12 +27,6 @@ module MatchesHelper
 		end
 	end
 
-	def points_from_match(val1, val2, val3)
-		val1 = 0 if val1.nil?
-		val2 = 0 if val2.nil?
-		val3 = 0 if val3.nil?
-		val1 + val2 + val3
-	end
 
 	def testpoint(val1)
 		if !val1.present?

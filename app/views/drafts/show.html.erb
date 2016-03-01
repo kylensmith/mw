@@ -15,35 +15,44 @@ You need to select a competitor for this bracket
 <%end%>
 
 <br><br><br><br><br><br><br>
+<!-- for i in 0..lenght
+
+scores["bracket-#{i}""] =  -->
+
+
+<!-- All the logic needs to be moved to the controller -->
 
 <%@brackets.each do |b|%>
-<%=b.name%>
+<%=b.name%> <%=b.sponsor%>
+<% running_points = 0 %>
 	<%b.competitors.each do |c|%>
 		<%if @draft.competitors.include?(c)%>
 		<strong><%="#{c.fname} #{c.lname}, #{c.team}"%></strong> <br>
 			<%c.all_matches.each do |match|%>
 			<%="#{match.tournament_match_number}"%> 
+		
 
-			<!-- I may just list only one competitor and not both names.  Use an if statement to verify if not drafted athlete -->
+			<%="#{match.winning_competitor.fname} #{match.winning_competitor.lname} (#{match.winning_competitor.team}) #{round_text(match.bracket_round)} #{match_text(match.result)} #{match.losing_competitor.fname} #{match.losing_competitor.lname} (#{match.losing_competitor.team}), #{match.score}"%>
+			
+			<%if @draft.competitors.include?(match.winning_competitor)%>
+			<% running_points += points_from_match(match_points(match.result), match.advancement_points, match.placement_points) %>
+			<%end%>
 
-
-			<%="#{match.first_competitor.fname} #{match.first_competitor.lname}, (#{match.first_competitor.team})"%> 
-
-			<%="#{match.second_competitor.fname} #{match.second_competitor.lname} (#{match.second_competitor.team})"%>
-
-			<%="#{round_text(match.bracket_round)} #{match_text(match.result)} #{match.score}"%> 
-
-			<%="Points Earned #{points_from_match(match_points(match.result), match.advancement_points, match.placement_points)}........#{match.advancement_points}"%>
+			<%="Team Points: #{running_points}"%>
 			<br>
+			
 
 			<%end%>
-			<br>
+			
 
 
 		<%end%>
-		<br>
+		
+
 
 	<%end%>
+	<%="Total Points Earned: #{running_points}" %>
+	<br>
 	<br>
 <%end%>
 

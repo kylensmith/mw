@@ -12,7 +12,10 @@
 		<li class="spacer">&nbsp;</li>
 		<!-- note: add 'winner' class and names will become bold -->
 		<% bout = where_match(105, i, @bracket.id)%>
-		<li class="game game-top">
+		
+			<li class="game game-top">
+			
+			
 			<!-- If there is no value, render nothing -->
 			
 			<% if bout%>
@@ -22,6 +25,7 @@
 			.
 			<%end%>
 		</li>	
+
 		<li class="game game-spacer">
 			<% if bout%>
 			<% result = bout.result%>
@@ -182,6 +186,7 @@
 			.
 			<%end%>
 		</li>	
+
 		<li class="game game-bottom winner">
 			<% if bout%>
 			<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>

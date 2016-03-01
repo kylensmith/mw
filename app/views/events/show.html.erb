@@ -24,7 +24,7 @@ Users Entered in the event from this group
 <br>
 <% @draft.each do |draft| %>
 <% if draft.present?%>
-<%= link_to draft.user.profile.username, group_event_draft_path(@group, @event.id, draft.id)%>
+<%= link_to draft.user.profile.username, group_event_draft_path(@group, @event.id, draft.id)%> <%=draft_score(draft.id)%>
 <br>
 
 <%end%>
