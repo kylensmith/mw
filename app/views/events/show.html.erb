@@ -1,6 +1,9 @@
 events show
 <br>
 <br>
+<%=link_to "Return to Groups index", groups_path%>
+<br><br><%=link_to "Return to #{@g.gname}", group_path(@g.id)%>
+<br><br>
 <h1>
 
 	<%=@event.event_name%>
@@ -11,7 +14,7 @@ events show
 List of brackets in this event:
 <% @brackets.each do |brackets| %>
 <br>
-<%= link_to brackets.name, bracket_path(brackets.id)%>
+<%= link_to brackets.name, group_event_bracket_path(@group, @event.id, brackets.id)%>
 <%end%>
 
 <br>

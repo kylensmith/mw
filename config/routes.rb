@@ -40,6 +40,12 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :groups do
+		resources :events do
+	  		resources :brackets
+		end
+	end
+
 
 
 

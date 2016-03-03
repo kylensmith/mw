@@ -2,15 +2,16 @@ This is a test
 
 Group Show Page
 
-
-
+<br><br><br>
+<%=link_to "Groups", groups_path%>
 <br><br><br>
 
 Group Name:
-<%=@group.gname%>
+<h1><%=@group.gname%></h1>
 
 <br><br><br>
-
+Events this group participates in:
+<br>
 <%@events.each do |events|%>
 
 <%= link_to events.event_name, group_event_path(@group.id, events.id)%>

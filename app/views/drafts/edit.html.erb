@@ -16,7 +16,9 @@ You need to select a competitor for this bracket
 			
 
 
-<br><br><br><br><br><br><br>
+<br><br><br><br>
+<%= link_to "Back to your draft", group_event_draft_path(@group, @event_id, @draft.id)%>
+<br><br><br>
 
 <%@brackets.each do |b|%>
 	<%=b.name%>
@@ -37,7 +39,8 @@ You need to select a competitor for this bracket
 					<%end%>
 				</select>
 				<%= hidden_field_tag :current_competitor_id, current_competitor %>
-				<%= hidden_field_tag :current_competitor_id, b.id %>
+				<%= hidden_field_tag :bracket_id, b.id %>
+				<%= hidden_field_tag :event_id, b.event.id %>
 				<%= hidden_field_tag :draft_id, @draft.id %>
 
 					<%= submit_tag "Change" %>

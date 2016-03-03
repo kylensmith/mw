@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		@brackets = @event.brackets
 		@group = params[:group_id]
+		@g = Group.find(@group)
 		@ev = params[:event_id]
 		@draft = @event.drafts
 

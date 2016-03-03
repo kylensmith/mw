@@ -43,14 +43,24 @@ class DraftsController < ApplicationController
 		@team = @draft.competitors
 		@event_id = params[:event_id]
 		# @cd = CompetitorDraft.find(1)
+		@group = params[:group_id]
+
 	end
 
 	def update_draft_selection
+		@draft = params[:draft_id]
 		competitor = Competitor.find(params[:competitor_id])
 		# old_competitor = Competitor.find(params[:current_competitor_id])
 		draft = Draft.find(params[:draft_id])
 		@event_id = params[:event_id]
 		join = CompetitorDraft.find_by(bracket_id: params[:bracket_id], draft_id: draft.id)
+		puts "****************"
+		
+		puts "****************"
+		puts params[:bracket_id]
+		puts draft.id
+		puts @event_id
+		puts "****************"
 		join.update(competitor_id: competitor.id, draft_id: draft.id)
 
 			# draft.competitors.push competitor
@@ -65,6 +75,9 @@ class DraftsController < ApplicationController
 		@draft = Draft.find(params[:id])
 		@team = @draft.competitors
 		@event_id = params[:event_id]
+		@group_id = params[:group_id]
+		@event = Event.find(@event_id)
+		@group = Group.find(@group_id)
 		# puts "*************"
 		# puts @team.last.fname
 		# puts "*************"

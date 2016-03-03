@@ -2,8 +2,11 @@
 
 <h1><%=@bracket.event.event_name%> - <%=@bracket.name%></h1>
 
-
-
+<!-- This link should take to the add view -->
+<%=link_to "Add matches to bracket", new_event_match_path(@bracket.event.id)%>
+<br>
+<%=link_to "Return to #{@group.gname} #{@event.event_name}", group_event_path(@group.id, @event.id)%>
+<br><br>
 
 <main id="tournament">
 	
@@ -20,7 +23,7 @@
 			
 			<% if bout%>
 
-			<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%="#{bout.first_competitor.fname} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
 			<%else%>
 			.
 			<%end%>
@@ -29,7 +32,7 @@
 		<li class="game game-spacer">
 			<% if bout%>
 			<% result = bout.result%>
-			<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<span><%="#{bout.winning_competitor.fname} #{match_text(result) if result } #{bout.score if result }"%></span>
 			<%else%>
 			.
 			<%end%>
@@ -39,7 +42,7 @@
 			
 			
 			<% if bout%>
-			<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>
+			<%="#{bout.second_competitor.fname} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>
 			<span></span></li>
 			<% end%>
 		<%end%>

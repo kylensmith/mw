@@ -14,7 +14,14 @@ You need to select a competitor for this bracket
 <br>
 <%end%>
 
-<br><br><br><br><br><br><br>
+
+
+
+
+<br><br><%=link_to "Return to the #{@group.gname}'s #{@event.event_name} scoreboard", group_event_path(@group_id, @event_id)%> 
+<br>
+<%=link_to "Edit your draft", edit_group_event_draft_path(@group_id, @event_id, @draft)%> 
+<br><br><br><br>
 <!-- for i in 0..lenght
 
 scores["bracket-#{i}""] =  -->
@@ -23,7 +30,8 @@ scores["bracket-#{i}""] =  -->
 <!-- All the logic needs to be moved to the controller -->
 
 <%@brackets.each do |b|%>
-<%=b.name%> <%=b.sponsor%>
+<%= link_to b.name, group_event_bracket_path(@group, @event.id, b.id)%>
+<%=b.sponsor%>
 <% running_points = 0 %>
 	<%b.competitors.each do |c|%>
 		<%if @draft.competitors.include?(c)%>

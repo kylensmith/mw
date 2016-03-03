@@ -1,6 +1,7 @@
 <br><br>
-Groups you belong to:
+<h1><%= "#{current_user.profile.username}'s groups"%></h1>
 <br>
+
 <%@yours.each do |group| %>
 	
 	<!-- This is a preliminary validation.  Once the option to invite users and have different invitation states is developed, this will need to be altered in order to be scalable. -->
@@ -10,4 +11,5 @@ Groups you belong to:
 	<%end%>
 	<br>
 <%end%>
+
 

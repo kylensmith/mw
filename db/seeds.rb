@@ -8,12 +8,17 @@
 
 
 
+
 k = User.create(profile_id: 1, email: "kns@test.com", password: "Thisisatest")
 z = User.create(profile_id: 2, email: "z@test.com", password: "Thisisatest")
-
+il = User.create(profile_id: 3, email: "this@test.com", password: "Thisisatest")
+u = User.create(profile_id: 4, email: "those@test.com", password: "Thisisatest")
 
 n = Profile.create(fname: "Kyle N.", lname: "Smith", username: "KYLENSMITH", city: "Wilmington", state: "Delaware", user_id: 1)
 s = Profile.create(fname: "Zi-Xiang", lname: "Shen", username: "EsquireShen", city: "Wilmington", state: "Delaware", user_id: 2)
+y = Profile.create(fname: "First Name", lname: "Last Name", username: "Champion214", city: "Wilmington", state: "Delaware", user_id: 3)
+o = Profile.create(fname: "Ruby", lname: "Rails", username: "CampingCoder", city: "Wilmington", state: "Delaware", user_id: 4)
+
 
 # k << n
 # z << s 
@@ -27,7 +32,7 @@ Bracket.create(name: "149", event_id: 1)
 Event.create(event_name: "2015 NCAA Wrestling Championship")
 
 Group.create(gname: "Beta Global Group")
-Group.create(gname: "Clarion '09", gtype: 2)
+Group.create(gname: "Group of Groups", gtype: 2)
 Group.create(gname: "Test Group 3")
 
 
@@ -75,26 +80,39 @@ Competitor.create(fname: "Eric", lname: "Morrill", team: "Edinboro")
 # Dummy - not in a bracket
 Competitor.create(fname: "KN", lname: "Smith", team: "Test")
 
-CompetitorBracket.create(competitor_id: 4, bracket_id: 1)
-CompetitorBracket.create(competitor_id: 12, bracket_id: 1)
-CompetitorBracket.create(competitor_id: 30, bracket_id: 1)
-CompetitorBracket.create(competitor_id: 24, bracket_id: 3)
-CompetitorBracket.create(competitor_id: 31, bracket_id: 3)
+for i in 1...8 do 
+CompetitorBracket.create(competitor_id: "#{i}", bracket_id: 1)
+
+end
+
+for i in 9...16 do 
+CompetitorBracket.create(competitor_id: "#{i}", bracket_id: 2)
+
+end
+
+for i in 17...24 do 
+CompetitorBracket.create(competitor_id: "#{i}", bracket_id: 3)
+
+end
+
+for i in 25...33 do 
+CompetitorBracket.create(competitor_id: "#{i}", bracket_id: 2)
+
+end
 
 
 
-Match.create(first_competitor_id: 4, second_competitor_id: 30, bracket_id: 1, )
-Match.create(first_competitor_id: 14, second_competitor_id: 23, bracket_id: 2, )
-Match.create(first_competitor_id: 24, second_competitor_id: 31, bracket_id: 3, )
-Match.create(first_competitor_id: 4, second_competitor_id: 12, bracket_id: 1, )
-
-Match.create(first_competitor_id: 4, first_competitor_team: "Bakersfield Test College", second_competitor_id: 12, second_competitor_team: "Utah Valley Test University", bracket_id: 1, bracket_round: 110, round_match: 4, result: 1, winning_competitor_id: 4, advancement_points: 1, placement_points: 0, tournament_match_number: 201, match_points: 0)
 
 
-Draft.create(event_id: 1, group_id: 1, user_id: 1)
-Draft.create(event_id: 1, group_id: 1, user_id: 2)
 
-CompetitorDraft.create(competitor_id: 4, draft_id: 1, bracket_id: 1)
-CompetitorDraft.create(competitor_id: 31, draft_id: 1, bracket_id: 3)
+
+
+# Draft.create(event_id: 1, group_id: 1, user_id: 1)
+# Draft.create(event_id: 1, group_id: 1, user_id: 2)
+# Draft.create(event_id: 1, group_id: 1, user_id: 3)
+# Draft.create(event_id: 1, group_id: 1, user_id: 4)
+
+# CompetitorDraft.create(competitor_id: 4, draft_id: 1, bracket_id: 1)
+# CompetitorDraft.create(competitor_id: 31, draft_id: 1, bracket_id: 3)
 
 

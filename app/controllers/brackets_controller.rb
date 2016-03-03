@@ -12,6 +12,8 @@ class BracketsController < ApplicationController
 
 	def show
 		@bracket = Bracket.find(params[:id])
+		@group = Group.find(params[:group_id])
+		@event = Event.find(params[:event_id])
 	end
 
 
