@@ -9,9 +9,9 @@ Tournament bout number: <%=@match.tournament_match_number%>
 			<%= form_for([@ev, @match]) do |f| %>   <%=f.select :bracket_id, options_from_collection_for_select(@ev.brackets, 'id', 'name') %>
 			<br>
 			<%=f.label :first_competitor_id %>   
-			<%=f.select :first_competitor_id, options_from_collection_for_select(@competitors, 'id', 'full_name_team') %>
+			<%=f.select :first_competitor_id, options_from_collection_for_select(@competitors, 'id', 'full_name_team'),:include_blank => "#{@match.first_competitor.full_name_team}"  %>
 
-			<%=f.select :second_competitor_id, options_from_collection_for_select(@competitors, 'id', 'full_name_team')%>
+			<%=f.select :second_competitor_id, options_from_collection_for_select(@competitors, 'id', 'full_name_team'),:include_blank => "#{@match.second_competitor.full_name_team}"%>
 
 
 			  
@@ -45,5 +45,11 @@ Tournament bout number: <%=@match.tournament_match_number%>
 			<%=f.submit "update match results" %>
 			<% end %>
 			<br><br>
+
+
+
+
+
+
 
 		

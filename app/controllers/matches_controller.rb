@@ -9,10 +9,13 @@ class MatchesController < ApplicationController
 	end
 
 	 def edit
+
+	 	@matches = Match.find(params[:id])
 		@match = Match.find(params[:id])
 		@ev = Event.find(params[:event_id])
 		@competitors = @match.bracket.competitors
 		@brackets = Event.find(params[:event_id]).brackets
+		redirect_to event_bracket_path(@ev.id, @match.bracket.id)
 	end
 
 	def update

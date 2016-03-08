@@ -21,7 +21,7 @@ You need to select a competitor for this bracket
 <br><br><br>
 
 <%@brackets.each do |b|%>
-	<%=b.name%>
+	<%= link_to b.name %>
 <% current_competitor = nil %>
 <!-- This form needs to be reworked and rewritten in ruby.  Also needs to default to blank if there is a value of nil for the competitor -->
 	<%= form_tag update_draft_selection_path do %>

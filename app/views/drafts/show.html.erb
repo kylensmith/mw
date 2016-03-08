@@ -14,6 +14,16 @@ You need to select a competitor for this bracket
 <br>
 <%end%>
 
+The event starts on: <%= @event.start_date%>  
+Today's date is <%=DateTime.now%>
+<br><br>
+<%if @event.start_date < DateTime.now %>
+Event already started
+<%elsif @event.start_date > DateTime.now %>
+This event has not started
+
+<%end%>
+
 
 
 
@@ -37,6 +47,11 @@ scores["bracket-#{i}""] =  -->
 		<%if @draft.competitors.include?(c)%>
 		<strong><%="#{c.fname} #{c.lname}, #{c.team}"%></strong> <br>
 			<%c.all_matches.each do |match|%>
+			<%if @user.admin.present?%>
+
+			<%=link_to "edit match", edit_event_match_path(@event.id, match.id)%>
+			<%end%>
+			
 			<%="#{match.tournament_match_number}"%> 
 		
 

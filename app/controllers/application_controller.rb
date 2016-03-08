@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
     val1 + val2 + val3
   end
 
+  def admin
+    current_user.admin.present?
+  end
+
   helper_method :points_from_match
 end

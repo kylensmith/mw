@@ -71,6 +71,7 @@ class DraftsController < ApplicationController
 
 
 	def show
+		@user = current_user
 		@brackets = Draft.find(params[:id]).brackets
 		@draft = Draft.find(params[:id])
 		@team = @draft.competitors
