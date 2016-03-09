@@ -3,11 +3,14 @@ This will add an athlete to an event.
 Add to the event/ bracket/ page
 <br>
 <br>
-<br>
-<br>
-<br>
 
-
+<%=current_user.id%>
+<br>
+<br>
+<br>
+<h1><%="#{@evname}"%> </h1><br>
+<%="#{@evname} #{@brname} #{@brsponsor}"%> 
+<br>
 current competitors in bracket
 <br>
 <% @cb.each do |comps| %>
@@ -15,6 +18,8 @@ current competitors in bracket
 
 <br>
 <%end%>
+
+
 
 <br>
 <br>

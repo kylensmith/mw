@@ -10,298 +10,771 @@
 <br><br>
 
 <main id="tournament">
-	
+
 	<ul class="round round-1">
 		<%for i in 1..32 do %> 
-		<li class="spacer">&nbsp;</li>
-		<!-- note: add 'winner' class and names will become bold -->
-		<% bout = where_match(105, i, @bracket.id)%>
-		
-		<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
-		
-		<li class="game game-top winner">
+			<li class="spacer">&nbsp;</li>
+			<% bout = where_match(105, i, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+			<!-- note: add 'winner' class and names will become bold -->
+				<li class="game game-top winner">
 			<%else%>
-			
-			<li class="game game-top">
-				<%end%>
-				
-				<!-- If there is no value, render nothing -->
-				
-				<% if bout%>
-
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
 				<%="#{bout.first_competitor.fname} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
-				<%else%>
-				
-				<%end%>
+			<%else%>
+			<%end%>
 			</li>	
-
 			<li class="game game-spacer">
-				<% if bout%>
+			<% if bout%>
 				<% result = bout.result%>
 				<span><%="#{bout.winning_competitor.fname} #{match_text(result) if result } #{bout.score if result }"%></span>
-				<%else%>
-				
-				<%end%>
+			<%else%>
+			<%end%>
 			</li>
-			
-			
-
 			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
-			<li class="game game-bottom winner">
-				<%else%>
+				<li class="game game-bottom winner">
+			<%else%>
 				<li class="game game-bottom">
-					<%end%>
-					
-					
-					<% if bout%>
-					<%="#{bout.second_competitor.fname} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>
-					<span></span></li>
-					<% end%>
-					<%end%>
-				</ul>
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>
+			<span></span></li>
+			<%end%>
+		<%end%>
+	</ul>
 
-				<!-- Second round loop -->
+<!-- Second round loop -->
 
-				<ul class="round round-2">
-					<%for i in 1..16 do %> 
-					<li class="spacer">&nbsp;</li>
-					<!-- note: add 'winner' class and names will become bold -->
-					<% bout = where_match(104, i, @bracket.id)%>
-					<% prev_round_winner1 = where_match(105, i*2-1, @bracket.id)%>
-					<% prev_round_winner2 = where_match(105, i*2, @bracket.id)%>
-
-					<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
-					
-					<li class="game game-top winner">
-						<%else%>
-						
-						<li class="game game-top">
-							<%end%>
-							<!-- If there is no value, render nothing -->
-							<% if bout%>
-							<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
-							<%elsif prev_round_winner1%>
-							<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
-							<%else%>
-							
-							<%end%>
-						</li>	
-						<li class="game game-spacer">
-							<% if bout%>
-							<% result = bout.result%>
-							<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
-							<%else%>
-							
-							<%end%>
-						</li>	
-						<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
-						
-						
-						<li class="game game-bottom winner">
-							<%else%>
-							<li class="game game-bottom">
-								<%end%>
-								
-								<% if bout%>
-								<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
-								<%elsif prev_round_winner2.present?%>
-								<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
-								<%else%>
-								
-								<%end%>
-								<%end%>
-							</ul>
+	<ul class="round round-2">
+		<%for i in 1..16 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(104, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(105, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(105, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+			<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
 
 
-							<!-- Second round loop -->
+<!-- Second round loop -->
 
-							<ul class="round round-3">
-								<%for i in 1..8 do %> 
-								<li class="spacer">&nbsp;</li>
-								<!-- note: add 'winner' class and names will become bold -->
-								<% bout = where_match(103, i, @bracket.id)%>
-								<% prev_round_winner1 = where_match(104, i*2-1, @bracket.id)%>
-								<% prev_round_winner2 = where_match(104, i*2, @bracket.id)%>
-								<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
-								
-								<li class="game game-top winner">
-									<%else%>
-									
-									<li class="game game-top">
-										<%end%>
-										<!-- If there is no value, render nothing -->
-										<% if bout%>
-										<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
-										<%elsif prev_round_winner1%>
-										<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
-										<%else%>
-										
-										<%end%>
-									</li>	
-									<li class="game game-spacer">
-										<% if bout%>
-										<% result = bout.result%>
-										<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
-										<%else%>
-										.
-										<%end%>
-									</li>	
-									<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
-									<li class="game game-bottom winner">
-										<%else%>
-										<li class="game game-bottom">
-											<%end%>
-											<% if bout%>
-											<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
-											<%elsif prev_round_winner2.present?%>
-											<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
-											<%else%>
-											
-											<%end%>
-											<%end%>
-										</ul>
-										<!-- Second round loop -->
+	<ul class="round round-3">
+		<%for i in 1..8 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(104, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(104, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+<!-- Second round loop -->
 
-										<ul class="round round-4">
-											<%for i in 1..4 do %> 
-											<li class="spacer">&nbsp;</li>
-											<!-- note: add 'winner' class and names will become bold -->
-											<% bout = where_match(103, i, @bracket.id)%>
-											<% prev_round_winner1 = where_match(103, i*2-1, @bracket.id)%>
-											<% prev_round_winner2 = where_match(103, i*2, @bracket.id)%>
-											<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
-											
-											<li class="game game-top winner">
-												<%else%>
-												
-												<li class="game game-top">
-													<%end%>
-													<!-- If there is no value, render nothing -->
-													<% if bout%>
-													<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
-													<%elsif prev_round_winner1%>
-													<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
-													<%else%>
-													
-													<%end%>
-												</li>	
-												<li class="game game-spacer">
-													<% if bout%>
-													<% result = bout.result%>
-													<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
-													<%else%>
-													.
-													<%end%>
-												</li>	
-												<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
-												<li class="game game-bottom winner">
-													<%else%>
-													<li class="game game-bottom">
-														<%end%>
-														<% if bout%>
-														<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
-														<%elsif prev_round_winner2.present?%>
-														<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
-														<%else%>
-														
-														<%end%>
-														<%end%>
-													</ul>
+	<ul class="round round-4">
+		<%for i in 1..4 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(103, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(103, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
 
-													<ul class="round round-5">
-														<%for i in 1..2 do %> 
-														<li class="spacer">&nbsp;</li>
-														<!-- note: add 'winner' class and names will become bold -->
-														<% bout = where_match(103, i, @bracket.id)%>
-														<% prev_round_winner1 = where_match(102, i*2-1, @bracket.id)%>
-														<% prev_round_winner2 = where_match(102, i*2, @bracket.id)%>
-														<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
-														
-														<li class="game game-top winner">
-															<%else%>
-															
-															<li class="game game-top">
-																<%end%>
-																<!-- If there is no value, render nothing -->
-																<% if bout%>
-																<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
-																<%elsif prev_round_winner1%>
-																<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
-																<%else%>
-																
-																<%end%>
-															</li>	
-															<li class="game game-spacer">
-																<% if bout%>
-																<% result = bout.result%>
-																<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
-																<%else%>
-																.
-																<%end%>
-															</li>	
-															<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
-															<li class="game game-bottom winner">
-																<%else%>
-																<li class="game game-bottom">
-																	<%end%>
-																	<% if bout%>
-																	<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
-																	<%elsif prev_round_winner2.present?%>
-																	<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
-																	<%else%>
-																	
-																	<%end%>
-																	<%end%>
-																</ul>
 
-																<ul class="round round-6">
-																	<%for i in 1..1 do %> 
-																	<li class="spacer">&nbsp;</li>
-																	<!-- note: add 'winner' class and names will become bold -->
-																	<% bout = where_match(103, i, @bracket.id)%>
-																	<% prev_round_winner1 = where_match(101, i*2-1, @bracket.id)%>
-																	<% prev_round_winner2 = where_match(101, i*2, @bracket.id)%>
-																	<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
-																	
-																	<li class="game game-top winner">
-																		<%else%>
-																		
-																		<li class="game game-top">
-																			<%end%>
-																			<!-- If there is no value, render nothing -->
-																			<% if bout%>
-																			<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
-																			<%elsif prev_round_winner1%>
-																			<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
-																			<%else%>
-																			
-																			<%end%>
-																		</li>	
-																		<li class="game game-spacer">
-																			<% if bout%>
-																			<% result = bout.result%>
-																			<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
-																			<%else%>
-																			.
-																			<%end%>
-																		</li>	
+	<ul class="round round-5">
+		<%for i in 1..2 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(102, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(102, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+				<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
 
-																		<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
-																		<li class="game game-bottom winner">
-																			<%else%>
-																			<li class="game game-bottom">
-																				<%end%>
-																				<% if bout%>
-																				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
-																				<%elsif prev_round_winner2.present?%>
-																				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
-																				<%else%>
-																				
-																				<%end%>
-																				<%end%>
-																			</ul>
-																			
-																		</main>
+
+	<ul class="round round-6">
+		<%for i in 1..1 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(101, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(101, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+				<li class="game game-spacer">
+			<% if bout%>
+			<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+</main>
+
+
+
+Consolation bracket
+
+
+<main id="tournament">
+	<ul class="round round-6">
+		<%for i in 1..1 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(301, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(101, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(101, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+				<li class="game game-spacer">
+			<% if bout%>
+			<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			5th place match
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+	<ul class="round round-6">
+			<li class="spacer">5th place</li>
+			<li class="spacer">6th place</li>
+			<!-- note: add 'winner' class and names will become bold -->	
+	</ul>
+</main>
+
+
+
+<!-- This is a break in the brackets in which third place is competed. -->
+
+<main id="tournament">
+
+	<ul class="round round-1">
+		<%for i in 1..32 do %> 
+			<li class="spacer">&nbsp;</li>
+			<% bout = where_match(210, i, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+			<!-- note: add 'winner' class and names will become bold -->
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{bout.winning_competitor.fname} #{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>
+			<span></span></li>
+			<%end%>
+		<%end%>
+	</ul>
+
+
+	<ul class="round round-2">
+		<%for i in 1..32 do %> 
+			<li class="spacerdrop">&nbsp;</li>
+			<% bout = where_match(105, i, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+			<!-- note: add 'winner' class and names will become bold -->
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacerdrop">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{bout.winning_competitor.fname} #{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%>
+			<span></span></li>
+			<%end%>
+		<%end%>
+	</ul>
+
+<!-- Second round loop -->
+
+	<ul class="round round-2">
+		<%for i in 1..16 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(104, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(105, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(105, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+			<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+	<ul class="round round-3">
+		<%for i in 1..16 do %> 
+			<li class="spacerdrop">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(104, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(105, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(105, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacerdrop">
+			<% if bout%>
+			<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+
+<!--  round loop -->
+
+	<ul class="round round-3">
+		<%for i in 1..8 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(104, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(104, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+	<ul class="round round-3">
+		<%for i in 1..8 do %> 
+			<li class="spacerdrop">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(104, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(104, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacerdrop">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+<!--  round loop -->
+
+	<ul class="round round-4">
+		<%for i in 1..4 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(103, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(103, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+	<ul class="round round-4">
+		<%for i in 1..4 do %> 
+			<li class="spacerdrop">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(103, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(103, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<li class="game game-spacerdrop">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+	<!-- another loop -->
+
+
+	<ul class="round round-5">
+		<%for i in 1..2 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(102, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(102, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+				<li class="game game-spacer">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+	<ul class="round round-5">
+		<%for i in 1..2 do %> 
+			<li class="spacerdrop">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(102, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(102, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+				<li class="game game-spacerdrop">
+			<% if bout%>
+				<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+
+	<!-- another round -->
+
+
+	<ul class="round round-6">
+		<%for i in 1..1 do %> 
+			<li class="spacer">&nbsp;</li>
+			<!-- note: add 'winner' class and names will become bold -->
+			<% bout = where_match(103, i, @bracket.id)%>
+			<% prev_round_winner1 = where_match(101, i*2-1, @bracket.id)%>
+			<% prev_round_winner2 = where_match(101, i*2, @bracket.id)%>
+			<%if bout && bout.first_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-top winner">
+			<%else%>
+				<li class="game game-top">
+			<%end%>
+			<!-- If there is no value, render nothing -->
+			<% if bout%>
+				<%="#{bout.first_competitor.fname[0]} #{bout.first_competitor.lname}, #{bout.first_competitor.team}"%><span></span>
+			<%elsif prev_round_winner1%>
+				<%="#{prev_round_winner1.first_competitor.fname[0]} #{prev_round_winner1.first_competitor.lname}, #{prev_round_winner1.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+			</li>	
+				<li class="game game-spacer">
+			<% if bout%>
+			<% result = bout.result%>
+				<span><%="#{match_text(result) if result } #{bout.score if result }"%></span>
+			<%else%>
+			<%end%>
+			</li>	
+			<%if bout && bout.second_competitor.id == bout.winning_competitor.id %>
+				<li class="game game-bottom winner">
+			<%else%>
+				<li class="game game-bottom">
+			<%end%>
+			<% if bout%>
+				<%="#{bout.second_competitor.fname[0]} #{bout.second_competitor.lname}, #{bout.second_competitor.team}"%><span></span>
+			<%elsif prev_round_winner2.present?%>
+				<%="#{prev_round_winner2.first_competitor.fname[0]} #{prev_round_winner2.first_competitor.lname}, #{prev_round_winner2.first_competitor.team}"%><span></span>
+			<%else%>
+			<%end%>
+		<%end%>
+	</ul>
+</main>
+
+
+
 
 
 

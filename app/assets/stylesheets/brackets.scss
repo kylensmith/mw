@@ -150,6 +150,27 @@ main{
     flex-grow:1;
   }
 
+  // drop in matches spacers?
+   .round .spacerdrop{ 
+    // border: solid;  
+    // border-color: red;
+   flex-grow:1; }
+  .round .spacerdrop:first-child{ 
+    // border: solid; 
+    // border-color: blue; 
+    flex-grow:.2; }
+  .round .spacerdrop:last-child{ 
+    border: solid;
+    border-color: yellow;
+    flex-grow:.5; }
+
+  .round .game-spacerdrop{
+    // border: solid; 
+    flex-grow:1.2;
+  }
+
+  
+
 /*
  *  General Styles
 */
@@ -175,6 +196,11 @@ li.game{
   li.game-top{ border-bottom:1px solid #aaa; }
 
   li.game-spacer{ 
+    border-right:1px solid #aaa;
+    min-height:40px;
+  }
+
+    li.game-spacerdrop{ 
     border-right:1px solid #aaa;
     min-height:40px;
   }

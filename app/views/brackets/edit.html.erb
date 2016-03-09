@@ -1,0 +1,23 @@
+brackets edit
+
+<br><br><br><br><br>
+<%=@event.event_name%>
+<br><br>
+Create a new bracket for the event:<br>
+<% @event.brackets.each do |brackets| %>
+<%=brackets.name%>
+<%= link_to "edit", edit_event_bracket_path(@event.id, brackets.id)%><br>
+<%end%>
+
+<br><br>
+
+
+<%= form_for ([@event, @bracket]) do |f| %>  
+	Bracket Name <%=f.text_field :name%><br>
+	Bracket Sponsor <%= f.text_field :sponsor %><br>
+	
+	
+	<div class="button"><%=f.submit :update %></div>
+	<% end %>
+
+

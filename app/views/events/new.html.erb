@@ -1,0 +1,20 @@
+events new
+
+<br><br><br><br><br><br><br>
+Create a new bracket for the event:<br>
+<% @events.last(5).each do |events| %>
+<%= link_to events.event_name, new_event_bracket_path(events.id)%><br>
+<%end%>
+
+<br><br>
+
+
+<%= form_for @event do |f| %>  
+	Event Name <%=f.text_field :event_name%><br>
+	Start Date <%= f.date_field(:start_date) %><br>
+	End Date <%= f.date_field(:end_date) %><br>
+	
+	<div class="button"><%=f.submit :create %></div>
+	<% end %>
+
+

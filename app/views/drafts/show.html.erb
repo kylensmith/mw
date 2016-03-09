@@ -15,11 +15,13 @@ You need to select a competitor for this bracket
 <%end%>
 
 The event starts on: <%= @event.start_date%>  
-Today's date is <%=DateTime.now%>
+Today's date is <%=@date%>
 <br><br>
-<%if @event.start_date < DateTime.now %>
+
+<!-- This is a comparison that will hide the update link for the draft once it is the day of the event to prevent people from updating their drafts on the day of the event -->
+<%if @event.start_date < @date %>
 Event already started
-<%elsif @event.start_date > DateTime.now %>
+<%elsif @event.start_date > @date %>
 This event has not started
 
 <%end%>
@@ -30,7 +32,16 @@ This event has not started
 
 <br><br><%=link_to "Return to the #{@group.gname}'s #{@event.event_name} scoreboard", group_event_path(@group_id, @event_id)%> 
 <br>
+
+
+<!-- This is a comparison that will hide the update link for the draft once it is the day of the event to prevent people from updating their drafts on the day of the event -->
+<%if @event.start_date < @date %>
+Note: the deadline for the event has passed.  Roster updates are no longer permitted.
+<%elsif @event.start_date > @date %>
 <%=link_to "Edit your draft", edit_group_event_draft_path(@group_id, @event_id, @draft)%> 
+
+<%end%>
+
 <br><br><br><br>
 <!-- for i in 0..lenght
 
