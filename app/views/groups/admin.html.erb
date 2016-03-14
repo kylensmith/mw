@@ -1,0 +1,39 @@
+<span class="admin_nav">
+	<%=link_to "Groups", groups_path%>
+</span>
+
+
+<br><br><br>
+
+
+<h1>Admin: add users to groups</h1>
+
+<br><br><br>
+Events this group participates in:
+<br>
+
+
+			<%= form_for @group do |f| %>   
+			<%=f.label :first_competitor_id %>   
+			<%=f.select :user, options_from_collection_for_select(@users, 'id', 'profile.username'),:include_blank => "Select First Competitor" %>
+
+			<%=f.select :second_competitor_id, options_from_collection_for_select(brackets.competitors, 'id', 'full_name_team'),:include_blank => "Select Second Competitor" %>
+			
+			<%= f.hidden_field :bracket_id, :value => brackets.id %>
+
+
+			  
+			<%=f.select :result, options_for_select(match_result),:include_blank => "Result" %> 
+			<%=f.label "Score" %>   
+			<%=f.text_field :score%>
+
+			<%= select_tag(:winner, options_for_select([['Select Winner', 0], ['First Competitor', 1], ['Second Competitor', 2]])) %>
+
+			<br>
+		
+			<br>
+			<%=f.submit :create %>
+			<% end %>
+
+
+

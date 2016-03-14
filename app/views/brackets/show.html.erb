@@ -1,12 +1,15 @@
-<%=@bracket.name%>
+<span class="admin_nav">
+	<%=link_to "Add matches to bracket", new_event_match_path(@bracket.event.id) if current_user.admin.present?%>
+	<%=link_to "Return to #{@group.gname} #{@event.event_name}", group_event_path(@group.id, @event.id)%>
+</span>
+<br>
+
 
 <h1><%=@bracket.event.event_name%> - <%=@bracket.name%></h1>
 
 <!-- This link should take to the add view -->
 
-<%=link_to "Add matches to bracket", new_event_match_path(@bracket.event.id) if current_user.admin.present?%>
-<br>
-<%=link_to "Return to #{@group.gname} #{@event.event_name}", group_event_path(@group.id, @event.id)%>
+
 <br><br>
 
 <main id="tournament">
@@ -30,7 +33,7 @@
 			<li class="game game-spacer">
 			<% if bout%>
 				<% result = bout.result%>
-				<span><%="#{bout.winning_competitor.fname} #{match_text(result) if result } #{bout.score if result }"%></span>
+				<span><%=" #{match_text(result) if result } #{bout.score if result }"%></span>
 			<%else%>
 			<%end%>
 			</li>

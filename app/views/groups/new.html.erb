@@ -1,0 +1,28 @@
+<span class="admin_nav">
+	<%=link_to "Groups", groups_path%>
+</span>
+
+
+
+
+<br><br><br>
+<h1>Group NEW Page</h1>
+<br><br><br>
+
+
+
+
+<br><br>
+
+Create a group
+
+<br><br>
+
+
+<%= form_for @group do |f| %>  
+	Group Name <%=f.text_field :gname%><br>
+	Group Type <%=f.select(:gtype, options_for_select([['Private', 1], ['Public', 2]])) %>
+	
+	
+	<div class="button"><%=f.submit "create group" %></div>
+	<% end %>

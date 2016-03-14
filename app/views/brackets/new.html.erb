@@ -4,7 +4,7 @@ brackets new
 Create a new bracket for the event:<br>
 <% @event.brackets.each do |brackets| %>
 <%=brackets.name%>
-<%= link_to "edit", edit_event_bracket_path(@event.id, brackets.id)%><br>
+<%= link_to "edit", edit_event_bracket_path(@event.id, brackets.id)%>  <%= link_to "Add Competitors to Bracket", event_bracket_add_path(@event.id, brackets.id)%><br>
 <%end%>
 
 <br><br>

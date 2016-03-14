@@ -1,13 +1,22 @@
-This is the /USER/INDEX
+<span class="admin_nav">
+	<% if current_user.admin.present?%>
+	<%=link_to "create a new event", new_event_path %>
+	<%=link_to "Add users to groups", group_admin_path%>
+	<%end%>
+	<%=link_to "create a new group", new_group_path %>
+</span>
 
-<h1><%=@user.profile.username%></h1>
+<br>
+
+<h1><%="Welcome, #{@user.profile.username}"%></h1>
 <h4><%=@user.profile.city%>, <%=@user.profile.state%></h4>
 
 
 <!-- Checks to see if a user is already invited to groups.  If not, it provides the default message. -->
 <% if @user.invitations.map(&:user_id).include? current_user.id %>
-
+<span class="bracket_names">
 <%=link_to "Groups", groups_path %>
+</span>
 <%else%>
 	This application is in beta testing.  <br><br>It appears that you have not been invited to join a group to test this application. <strong>Inclusion in a group is by invitation only.</strong>  If you would like to be included in a test, you will need to have a current user invite you to join a test.
 	<br><br>
@@ -18,14 +27,5 @@ This is the /USER/INDEX
 
 <br><br><br><br><br>
 
-Admin portal
-<br>
-If an admin this should display... <br>
-
-<%=link_to "create a new group", new_group_path %>
-
-<br>
-
-<%=link_to "create a new event", new_event_path %>
 
 

@@ -1,20 +1,23 @@
-This is a test
+<span class="admin_nav">
+	<%=link_to "Groups", groups_path%>
+</span>
 
-Group Show Page
 
-<br><br><br>
-<%=link_to "Groups", groups_path%>
-<br><br><br>
 
-Group Name:
+<br><br>
+
+
 <h1><%=@group.gname%></h1>
 
 <br><br><br>
 Events this group participates in:
 <br>
+<span class="bracket_names">
 <%@events.each do |events|%>
+<br>
 
-<%= link_to events.event_name, group_event_path(@group.id, events.id)%>
+<span class="event"><%= link_to events.event_name, group_event_path(@group.id, events.id)%></span><br>
+</span>
 <%end%>
 
 

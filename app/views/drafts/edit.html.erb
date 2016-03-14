@@ -1,23 +1,15 @@
+<span class="admin_nav">
+	<%= link_to "Back to your draft", group_event_draft_path(@group, @event_id, @draft.id)%>
+</span>
+
 <br><br>
 
 <h1><%=@draft.user.profile.username%>'s draft for <%=@draft.event.event_name%></h1> 
 
 <br>
-<%@team.each do |team|%>
-
-<%if team.fname.empty?%>
-You need to select a competitor for this bracket
-<%else%>
-<%=team.id%>BRACKET NAME: <%=team.fname%> <%=team.lname%> LINK
-
-<%end%>
-<br>
-<%end%>
-			
 
 
-<br><br><br><br>
-<%= link_to "Back to your draft", group_event_draft_path(@group, @event_id, @draft.id)%>
+
 <br><br><br>
 
 <%@brackets.each do |b|%>
@@ -34,7 +26,7 @@ You need to select a competitor for this bracket
 					<% current_competitor = c.id %>
 					<%end%>>
 						 
-					<%="#{c.fname} #{c.lname}, #{c.team} ID:[#{c.id}]"%>
+					<%="#{c.fname} #{c.lname}, #{c.team}"%>
 					</option>
 					<%end%>
 				</select>

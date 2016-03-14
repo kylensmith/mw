@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def points_from_match(val1, val2, val3)
     val1 = 0 if val1.nil?
     val2 = 0 if val2.nil?

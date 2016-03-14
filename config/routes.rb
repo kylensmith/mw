@@ -8,15 +8,17 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#index'
   # resources :profiles, :users, :groups, :events, :drafts, :directors, :competitors, :brackets, :admins
-  get '/events/:event_id/brackets/:bracket_id/add' => 'brackets#add'
+  get '/events/:event_id/brackets/:bracket_id/add' => 'brackets#add', as: :event_bracket_add
 
   get '/events/:event_id/brackets/:bracket_id/add_to_bracket/:competitor_id' => 'brackets#add_to_bracket'
 	
+	get '/groups/admin' => 'groups#admin', as: :group_admin
 	
+	get '/profile_edit' => 'profiles#profile_edit', as: :profile_edit
 
   post 'update_draft_selection' => 'drafts#update_draft_selection', as: :update_draft_selection
 	
-	resources :competitors
+	resources :competitors, :profiles
 
 	resources :events do
 	  resources :brackets

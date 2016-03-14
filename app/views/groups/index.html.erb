@@ -1,15 +1,34 @@
-<br><br>
-<h1><%= "#{current_user.profile.username}'s groups"%></h1>
-<br>
+
+<span class="admin_nav">
+<%= link_to "Create a new group", new_group_path%><br><br>
+</span>
+<h1><%= "Welcome, #{current_user.profile.username}"%></h1>
+
+Groups you are a member:<br>
 
 <%@yours.each do |group| %>
-	
+<span class="bracket_names">	
 	<!-- This is a preliminary validation.  Once the option to invite users and have different invitation states is developed, this will need to be altered in order to be scalable. -->
 <% if group.invitations.map(&:user_id).include? current_user.id %>
+
+
 		<%= link_to group.gname, group_path(group.id)%>
 		
 	<%end%>
-	<br>
+	<br></span>
 <%end%>
 
 
+
+<br>
+<br><br><br>
+Public groups you may join:
+<br><br>
+
+<%@public.each do |group| %>
+<span class="bracket_names">
+		<%= link_to group.gname, group_path(group.id)%>
+		
+	
+	<br></span>
+<%end%>

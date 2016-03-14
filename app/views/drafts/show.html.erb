@@ -1,95 +1,92 @@
-<br><br>
-This is the drafts show
-<h1><%=@draft.user.profile.username%>'s draft for <%=@draft.event.event_name%></h1> 
+<span class="admin_nav">
+	<%=link_to "Return to the  scoreboard", group_event_path(@group_id, @event_id)%> 
+	
+<%if @event.start_date > @date %>
+	<%if @draft.user == current_user%>
+
+		<%=link_to "Edit your draft", edit_group_event_draft_path(@group_id, @event_id, @draft)%> 
+
+	<%end%>
+<%end%>	
+</span>
 
 <br>
-<%@team.each do |team|%>
 
-<%if team.fname.empty?%>
-You need to select a competitor for this bracket
-<%else%>
-<%=team.id%>BRACKET NAME: <%=team.fname%> <%=team.lname%> LINK
-
-<%end%>
+<br><br>
+<div class="event" =><%=@draft.event.event_name%></div> 
 <br>
-<%end%>
+<div class="username" =><%=@draft.user.profile.username%></div> 
+<br>
 
-The event starts on: <%= @event.start_date%>  
-Today's date is <%=@date%>
+
 <br><br>
 
-<!-- This is a comparison that will hide the update link for the draft once it is the day of the event to prevent people from updating their drafts on the day of the event -->
-<%if @event.start_date < @date %>
-Event already started
-<%elsif @event.start_date > @date %>
-This event has not started
 
-<%end%>
-
-
-
-
-
-<br><br><%=link_to "Return to the #{@group.gname}'s #{@event.event_name} scoreboard", group_event_path(@group_id, @event_id)%> 
+The event starts on: <%= @event.start_date.strftime("%A %B %d, %Y")%>  <br>
 <br>
 
 
 <!-- This is a comparison that will hide the update link for the draft once it is the day of the event to prevent people from updating their drafts on the day of the event -->
 <%if @event.start_date < @date %>
 Note: the deadline for the event has passed.  Roster updates are no longer permitted.
-<%elsif @event.start_date > @date %>
-<%=link_to "Edit your draft", edit_group_event_draft_path(@group_id, @event_id, @draft)%> 
 
 <%end%>
 
-<br><br><br><br>
+<br>
 <!-- for i in 0..lenght
 
 scores["bracket-#{i}""] =  -->
 
-
+<br>
+	<br>
 <!-- All the logic needs to be moved to the controller -->
-
+<div class="group-text">
 <%@brackets.each do |b|%>
-<%= link_to b.name, group_event_bracket_path(@group, @event.id, b.id)%>
-<%=b.sponsor%>
-<% running_points = 0 %>
+	<%= link_to b.name, group_event_bracket_path(@group, @event.id, b.id), :class => "bracket-link"%>
+	<%=b.sponsor%>
+	<% running_points = 0 %>
+	<%total_points = 0%>
 	<%b.competitors.each do |c|%>
-		<%if @draft.competitors.include?(c)%>
-		<strong><%="#{c.fname} #{c.lname}, #{c.team}"%></strong> <br>
-			<%c.all_matches.each do |match|%>
-			<%if @user.admin.present?%>
-
-			<%=link_to "edit match", edit_event_match_path(@event.id, match.id)%>
-			<%end%>
+	<%if @draft.competitors.include?(c)%>
+		<span class="athlete"><%="#{c.fname} #{c.lname}, #{c.team}"%><span> <br>
+		<span class="matches"><%c.all_matches.each do |match|%>
+			<table border="1" width="900px"><tr>
+			<td>
 			
-			<%="#{match.tournament_match_number}"%> 
-		
-
-			<%="#{match.winning_competitor.fname} #{match.winning_competitor.lname} (#{match.winning_competitor.team}) #{round_text(match.bracket_round)} #{match_text(match.result)} #{match.losing_competitor.fname} #{match.losing_competitor.lname} (#{match.losing_competitor.team}), #{match.score}"%>
 			
+			<%="#{match.winning_competitor.fname} #{match.winning_competitor.lname} (#{match.winning_competitor.team}) #{match_text(match.result)} #{match.losing_competitor.fname} #{match.losing_competitor.lname} (#{match.losing_competitor.team}), #{match.score}"%>
+
 			<%if @draft.competitors.include?(match.winning_competitor)%>
-			<% running_points += points_from_match(match_points(match.result), match.advancement_points, match.placement_points) %>
+				<% running_points += points_from_match(match_points(match.result), match.advancement_points, match.placement_points) %>
 			<%end%>
-
+			</td>
+			<td><%="#{round_text(match.bracket_round)}" %>
+			</td>
+			<td>
 			<%="Team Points: #{running_points}"%>
-			<br>
-			
 
+			<% total_points+= running_points %>
+			</td>
+			<td>
+			<%if @user.admin.present?%>
+				<%=link_to "edit match", edit_event_match_path(@event.id, match.id)%>
+			<%end%><%="#{match.tournament_match_number}"%> 
+			</td>
+			</tr>
+		</span>
+		</table>
 			<%end%>
-			
-
-
 		<%end%>
-		
-
-
 	<%end%>
-	<%="Total Points Earned: #{running_points}" %>
+	
+	<%="Total Points Earned: #{total_points}" %>
+	<br>
+	<br>
 	<br>
 	<br>
 <%end%>
 
+</div>
 
 
 

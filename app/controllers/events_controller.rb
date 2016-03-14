@@ -9,7 +9,6 @@ class EventsController < ApplicationController
 		else
 		@events = Event.all
 		@event = Event.new
-
 		end
 	end
 

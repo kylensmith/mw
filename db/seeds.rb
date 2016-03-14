@@ -77,6 +77,18 @@ Competitor.create(fname: "Allen", lname: "Bartelli", team: "Boise State")
 Competitor.create(fname: "Troy", lname: "Nickerson", team: "Cornell")
 Competitor.create(fname: "Eric", lname: "Morrill", team: "Edinboro")
 
+
+
+
+Competitor.create(fname: "David", lname: "Taylor", team: "Penn State")
+Competitor.create(fname: "Bekzod", lname: "Abdurakhmonov", team: "Clarion")
+Competitor.create(fname: "Peter", lname: "Yates", team: "Virginia Tech")
+Competitor.create(fname: "Tyler", lname: "Caldwell", team: "Oklahoma State")
+Competitor.create(fname: "Kyle", lname: "Dake", team: "Cornell")
+
+
+
+
 # Dummy - not in a bracket
 Competitor.create(fname: "KN", lname: "Smith", team: "Test")
 
@@ -97,6 +109,11 @@ end
 
 for i in 25...33 do 
 CompetitorBracket.create(competitor_id: "#{i}", bracket_id: 2)
+
+end
+
+for i in 34...38 do 
+CompetitorBracket.create(competitor_id: "#{i}", bracket_id: 4)
 
 end
 

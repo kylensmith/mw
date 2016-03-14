@@ -1,8 +1,12 @@
-events show
+<span class="admin_nav">
+	<%=link_to "Return to Groups", groups_path%>
+	<%=link_to "Return to #{@g.gname}", group_path(@g.id)%>
+</span>
+
+
+
 <br>
-<br>
-<%=link_to "Return to Groups index", groups_path%>
-<br><br><%=link_to "Return to #{@g.gname}", group_path(@g.id)%>
+
 <br><br>
 <h1>
 
@@ -14,24 +18,34 @@ events show
 List of brackets in this event:
 <% @brackets.each do |brackets| %>
 <br>
-<%= link_to brackets.name, group_event_bracket_path(@group, @event.id, brackets.id)%>
+<span class="bracket_names">
+<%= link_to brackets.name, group_event_bracket_path(@group, @event.id, brackets.id)%></span>
 <%end%>
 
 <br>
 
 <br>
 
-Users Entered in the event from this group
+<h3>Scoreboard:</h3>
 
-<br>
-<br>
+
+<table border="1" width="900px"><tr>
+			<td>User</td><td>Points</td></tr>
 <% @draft.each do |draft| %>
 <% if draft.present?%>
-<%= link_to draft.user.profile.username, group_event_draft_path(@group, @event.id, draft.id)%> <%=draft_score(draft.id)%>
-<br>
+<tr>
+	<td><span class="username"><%= link_to draft.user.profile.username, group_event_draft_path(@group, @event.id, draft.id)%> </span></td>
+<td>
+<span class="username"><%=draft_score(draft.id)%></span>
+
+
 
 <%end%>
+
 <%end%>
+</td>
+</tr>
+</table>
 
 <br>
 
