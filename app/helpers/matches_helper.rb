@@ -68,11 +68,11 @@ module MatchesHelper
 		elsif val == 102
 		"Quarters"
 		elsif val == 103
-		"2nd Rd"
+		"R-"
 		elsif val == 104
-		"1st Rd"
-		elsif val == 104
-		"Pig-Tail"
+		"R-32"
+		elsif val == 105
+		"R-64"
 	elsif val == 200
 			"Consi-Finals"
 		elsif val == 201

@@ -67,11 +67,13 @@ scores["bracket-#{i}""] =  -->
 
 			<% total_points+= running_points %>
 			</td>
-			<td>
 			<%if @user.admin.present?%>
+			<td>
+			
 				<%=link_to "edit match", edit_event_match_path(@event.id, match.id)%>
-			<%end%><%="#{match.tournament_match_number}"%> 
+			
 			</td>
+			<%end%>
 			</tr>
 		</span>
 		</table>

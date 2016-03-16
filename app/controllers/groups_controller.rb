@@ -32,6 +32,8 @@ class GroupsController < ApplicationController
 		@group = Group.create(groupinfo)
 		@user = current_user
 		Director.create(user_id: current_user.id, group_id: @group.id)
+		@user.groups.push @group
+		redirect_to groups_path
 	end
 
 	private
