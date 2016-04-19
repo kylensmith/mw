@@ -1,3 +1,4 @@
+[![Code Climate](https://codeclimate.com/github/kylensmith/mw/badges/gpa.svg)](https://codeclimate.com/github/kylensmith/mw)
 == README
 
 This README would normally document whatever steps are necessary to get the
